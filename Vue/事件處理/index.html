@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+            <button @click="counter +=1">Add 1</button>
+            <p>The button above has been clicked {{ counter }} times.</p>
+            <button @click="greet">Greet</button>
+            <button @click="say('hello')">Msg</button>
+
+            <button @click="warn('Form cannot be submitted yet.', $event)">
+                Submit
+            </button>
+
+            <!-- 提交事件不再重载页面 -->
+            <form @submit.prevent="onSubmit"></form>
+            <button @click="one($event), two($event)">多事件</button>
+            <button @click.once="doThis">doThis</button>
+
+            <input @keyup.enter="enter" />
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            new Vue({
+                el: "#app",
+                data() {
+                    return {
+                        counter: 0,
+                        name: "Vue.js",
+                    };
+                },
+                methods: {
+                    greet(event) {
+                        alert("Hello " + this.name + " !");
+                        // `event` 是原生 DOM event
+                        if (event) {
+                            alert(event.target.tagName);
+                        }
+                    },
+                    say(msg) {
+                        alert("Msg：" + msg);
+                    },
+                    warn(message, event) {
+                        alert("Msg：" + message);
+                        // 现在可以访问到原生事件
+                        console.log(event);
+                    },
+                    doThis() {
+                        alert("只觸發一次");
+                    },
+                    enter() {
+                        alert("enter");
+                    },
+                    one(event) {
+                        alert("one " + event.target.tagName);
+                    },
+                    two(event) {
+                        alert("two " + event.target.tagName);
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
