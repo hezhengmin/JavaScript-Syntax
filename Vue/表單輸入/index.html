@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+            <!-- 文本 (Text) -->
+            <input v-model="message" placeholder="edit me" />
+            <p>Message is: {{ message }}</p>
+            <!-- 多行文本 (Textarea) -->
+            <textarea
+                v-model="areaMsg"
+                placeholder="add multiple lines"
+            ></textarea>
+            <p>Message is: {{ areaMsg }}</p>
+            <!-- 复选框 (Checkbox) -->
+            <input type="checkbox" id="checkbox" v-model="checked" />
+            <label for="checkbox">{{ checked }}</label>
+            <!-- 单选框 (Radio) -->
+            <div>
+                <input type="radio" id="one" value="1" v-model="picked" />
+                <label for="one">One</label>
+                <br />
+                <input type="radio" id="two" value="2" v-model="picked" />
+                <label for="two">Two</label>
+                <br />
+                <span>Picked: {{ picked }}</span>
+            </div>
+            <!-- 选择框 (Select) -->
+            <div id="v-model-select" class="demo">
+                <select name="cars" v-model="selected">
+                    <option disabled value="">Please select one</option>
+                    <option value="volvo">Volvo</option>
+                    <option value="bmw">BMW</option>
+                    <option value="saab">Saab</option>
+                    <option value="benz">Benz</option>
+                    <option value="audi">Audi</option>
+                </select>
+                <span>Selected: {{ selected }}</span>
+            </div>
+            <!-- 多选 (Select) -->
+            <select v-model="selectedMultiple" multiple>
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+            </select>
+            <br />
+            <span>Selected: {{ selectedMultiple }}</span>
+
+            <!-- dynamic (Select) -->
+            <div id="v-model-select-dynamic" class="demo">
+                <select v-model="init.selected">
+                    <option
+                        v-for="option in init.options"
+                        :value="option.value"
+                    >
+                        {{option.text}}
+                    </option>
+                </select>
+                <br />
+                <span>Selected: {{ init.selected }}</span>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            let vm = new Vue({
+                el: "#app",
+                data: {
+                    message: "",
+                    areaMsg: "",
+                    checked: true,
+                    picked: "",
+                    selected: "",
+                    selectedMultiple: [],
+                    init: {
+                        selected: "1",
+                        options: [
+                            { text: "One", value: "1" },
+                            { text: "Two", value: "2" },
+                            { text: "Three", value: "3" },
+                        ],
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
