@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+            <div>
+                <input
+                    type="checkbox"
+                    v-model="toggle"
+                    true-value="yes"
+                    false-value="no"
+                />
+                {{toggle}}
+            </div>
+            <div>
+                <select name="select" id="select" v-model="picked">
+                    <option v-for="(item,index) in list" :value="item.v">
+                        {{item.t}}
+                    </option>
+                </select>
+                {{picked}}
+            </div>
+            <!-- 输入值转为数值类型-->
+            <input v-model.number="age" type="number" />
+            <!-- 自动过滤用户输入的首尾空白字符-->
+            <input v-model.trim="msg" />
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            let vm = new Vue({
+                el: "#app",
+                data: {
+                    toggle: "",
+                    picked: "",
+                    list: [
+                        { v: "可樂", t: "Cola" },
+                        { v: "雪碧", t: "Sprite" },
+                        { v: "芬達", t: "Fanta" },
+                        { v: "七喜", t: "7.Up" },
+                        { v: "蘋果西打", t: "Apple cider" },
+                    ],
+                },
+            });
+        </script>
+    </body>
+</html>
