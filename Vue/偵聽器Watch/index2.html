@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+            <select v-model="selected">
+                <option value="">請選擇</option>
+                <option v-for="(option,index) in options" v-bind:value="index">
+                    {{option.text}}
+                </option>
+            </select>
+            <label>
+                <input
+                    type="radio"
+                    name="radioOption"
+                    v-model="picked"
+                    value="A"
+                />Small
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="radioOption"
+                    v-model="picked"
+                    value="B"
+                />Big
+            </label>
+            {{change}} {{combine}}
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+        <script>
+            let vm = new Vue({
+                el: "#app",
+                data: {
+                    change: "",
+                    picked: "",
+                    selected: "",
+                    options: [
+                        { text: "one", value: "1" },
+                        { text: "two", value: "2" },
+                        { text: "three", value: "3" },
+                    ],
+                },
+                watch: {
+                    picked: function (newValue, oldValue) {
+                        this.change = "picked";
+                    },
+                    selected: function (newValue, oldValue) {
+                        this.change = "selected";
+                    },
+                },
+                computed: {
+                    combine: function () {
+                        return this.picked + this.selected;
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
