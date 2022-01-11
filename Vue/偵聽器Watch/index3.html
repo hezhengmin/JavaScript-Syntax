@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+            <select v-model="City">
+                <option value="none">請選擇</option>
+                <option v-for="item in Cities" :value="item.Value">
+                    {{item.Text}}
+                </option>
+            </select>
+            <select v-model="Food">
+                <option value="none">請選擇</option>
+                <option v-for="item in Foods" :value="item.Value">
+                    {{item.Text}}
+                </option>
+            </select>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script>
+            let vm = new Vue({
+                el: "#app",
+                data: {
+                    City: "none",
+                    Cities: [
+                        //城市
+                        { Text: "台中", Value: "Taichung" },
+                        { Text: "台北", Value: "Taipei" },
+                        { Text: "高雄", Value: "Kaohsiung" },
+                    ],
+                    Food: "none",
+                    Foods: [], //食物
+                },
+                watch: {
+                    City: function (newValue, oldValue) {
+                        //console.log(newValue, oldValue);
+
+                        //清空食物下拉選單，除了"請選擇"
+                        this.Foods.forEach((m) => {
+                            if (m.Value !== "none") {
+                                this.Foods.pop();
+                            }
+                        });
+
+                        let tmpFood = [];
+                        if (newValue === "Taichung") {
+                            tmpFood.push({
+                                Text: "太陽餅",
+                                Value: "SunCake",
+                            });
+                        } else if (newValue === "Kaohsiung") {
+                            tmpFood.push({
+                                Text: "肉乾",
+                                Value: "Meat Jerky",
+                            });
+                        } else if (newValue === "Taipei") {
+                            tmpFood.push({
+                                Text: "鳳梨酥",
+                                Value: "Pineapple Cake",
+                            });
+                        } else {
+                            //請選擇
+                        }
+                        tmpFood.forEach((food) => {
+                            this.Foods.push(food);
+                        });
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
