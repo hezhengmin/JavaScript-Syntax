@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+            <img v-bind:src="src" alt="" />
+            <h1>{{title}}</h1>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.js"></script>
+        <script>
+            let vm = new Vue({
+                el: "#app",
+                data: {
+                    src: "./images/Github.png",
+                    title: "標題標題標題標題標題",
+                },
+            });
+        </script>
+    </body>
+</html>
