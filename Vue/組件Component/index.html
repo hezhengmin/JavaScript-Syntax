@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+            <blog v-bind:title="title" v-bind:author="author.name"></blog>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.js"></script>
+        <script>
+            Vue.component("blog", {
+                props: {
+                    title: String,
+                    author: Object,
+                },
+                template: `<h1>{{title}}</h1>
+                          <p>{{author}}</p>`,
+            });
+            let vm = new Vue({
+                el: "#app",
+                data: {
+                    title: "這行是標題",
+                    author: {
+                        name: "Ming",
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
