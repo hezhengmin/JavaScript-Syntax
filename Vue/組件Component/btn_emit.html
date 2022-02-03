@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div id="app">
+            <!-- show識字定義的名稱，ParentShow是Root底下的Method之一 -->
+            <btn text="是" v-on:show="ParentShow"></btn>
+            <btn text="否" v-on:show="ParentShow"></btn>
+            <h1>{{Text}}</h1>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.js"></script>
+        <script>
+            Vue.component("btn", {
+                props: ["text"],
+                template: `
+                  <div>
+                      <button @click="showText">{{text}}</button>
+                  </div>
+                  `,
+                data() {
+                    return {
+                        txt: this.text,
+                    };
+                },
+                methods: {
+                    showText() {
+                        // show是自訂的名稱
+                        this.$emit("show", this.txt);
+                        console.log(this.txt);
+                    },
+                },
+            });
+            let vm = new Vue({
+                el: "#app",
+                data: {
+                    Text: "",
+                },
+                methods: {
+                    ParentShow(_txt) {
+                        this.Text = _txt;
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
