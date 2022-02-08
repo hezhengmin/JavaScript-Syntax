@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+            <!-- 第三步:編寫組件 -->
+            <xuexiao></xuexiao>
+            <hr />
+            <!-- 第三步:編寫組件 -->
+            <xuesheng></xuesheng>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.js"></script>
+        <script>
+            //第一步:創建school組件
+            const school = Vue.extend({
+                template: `
+                    <div>
+                        <h2>學校名稱:{{schoolName}}</h2>
+                        <h2>學校地址:{{address}}</h2>
+                    </div>
+                `,
+                data() {
+                    return {
+                        schoolName: "台中科大",
+                        address: "台中市北區",
+                    };
+                },
+            });
+            const student = Vue.extend({
+                template: `
+                    <div>
+                        <h2>學生姓名:{{studentName}}</h2>
+                        <h2>學生年齡:{{age}}</h2>
+                    </div>
+                `,
+                data() {
+                    return {
+                        studentName: "MingHe",
+                        age: 25,
+                    };
+                },
+            });
+            let vm = new Vue({
+                el: "#app",
+                //第二步:註冊組件(局部註冊)
+                components: {
+                    xuexiao: school,
+                    xuesheng: student,
+                },
+            });
+        </script>
+    </body>
+</html>

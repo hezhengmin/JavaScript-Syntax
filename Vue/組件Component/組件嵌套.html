@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="root">
+            <app></app>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.js"></script>
+        <script>
+            const student = Vue.extend({
+                template: `
+                    <div>
+                        <h2>學生姓名:{{studentName}}</h2>
+                        <h2>學生年齡:{{age}}</h2>
+                    </div>
+                `,
+                data() {
+                    return {
+                        studentName: "MingHe",
+                        age: 25,
+                    };
+                },
+            });
+            const school = Vue.extend({
+                template: `
+                    <div>
+                        <h2>學校名稱:{{schoolName}}</h2>
+                        <h2>學校地址:{{address}}</h2>
+                        <student></student>
+                    </div>
+                `,
+                data() {
+                    return {
+                        schoolName: "台中科大",
+                        address: "台中市北區",
+                    };
+                },
+                components: {
+                    student,
+                },
+            });
+
+            const hello = Vue.extend({
+                template: `<h1>{{msg}}</h1>`,
+                data() {
+                    return {
+                        msg: "安安",
+                    };
+                },
+            });
+
+            const app = Vue.extend({
+                template: `<div>
+                    <hello></hello>
+                    <school></school> 
+                </div>`,
+                components: {
+                    school,
+                    hello,
+                },
+            });
+
+            let vm = new Vue({
+                el: "#root",
+                //第二步:註冊組件(局部註冊)
+                components: {
+                    app,
+                },
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+            <!-- 第一種寫法 -->
+            <School></School>
+            <!-- 第二種寫法 -->
+            <School />
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.js"></script>
+        <script>
+            // const school = Vue.extend({option}) 可以簡稱為 const school ={option}
+            const school = {
+                // 規定Vue開發者工具的名字(name)，顯示呈現<Xuexiao>，字首第一個一定大寫
+                name: "xuexiao",
+                template: `
+                    <div>
+                        <h2>學校名稱:{{schoolName}}</h2>
+                        <h2>學校地址:{{address}}</h2>
+                    </div>
+                `,
+                data() {
+                    return {
+                        schoolName: "台中科大",
+                        address: "台中市北區",
+                    };
+                },
+            };
+
+            let vm = new Vue({
+                el: "#app",
+                components: {
+                    School: school,
+                },
+            });
+        </script>
+    </body>
+</html>
