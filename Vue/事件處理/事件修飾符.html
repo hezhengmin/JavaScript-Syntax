@@ -9,6 +9,26 @@
             .red {
                 background-color: red;
             }
+            .box1 {
+                background-color: aquamarine;
+                height: 200px;
+            }
+            .box2 {
+                background-color: greenyellow;
+                height: 100px;
+            }
+            .box3 {
+                background-color: rebeccapurple;
+                height: 50px;
+            }
+            .list {
+                background-color: orange;
+                overflow: auto;
+                height: 200px;
+            }
+            .list li {
+                height: 100px;
+            }
         </style>
     </head>
     <body>
@@ -16,13 +36,42 @@
             .prevent 阻止超連結 
             .stop 防止冒泡
             .once 指觸發一次
+            .capture 捕獲，一般呈現是bubbling(冒泡)事件
+            .self 觸發當前的，可以阻止冒泡事件
+            .passive 不用等待方法執行完畢，就觸發行為
         -->
         <div id="root">
+            <!-- prevent  -->
             <a href="https://google.com.tw" @click.prevent="showInfo">連結</a>
+            <!-- stop -->
             <div class="red" @click="showInfo">
                 <button @click.stop="showInfo">click</button>
             </div>
+            <!-- once -->
             <button @click.once="showInfo">once click</button>
+            <!-- capture  -->
+            <div class="box1" @click.capture="show('box1')">
+                box1
+                <div class="box2" @click.capture="show('box2')">
+                    box2
+                    <div class="box3" @click="show('box3')">box3</div>
+                </div>
+            </div>
+            <!-- self  -->
+            <div class="box1" @click.self="show('box1')">
+                box1
+                <div class="box2" @click.capture="show('box2')">
+                    box2
+                    <div class="box3" @click="show('box3')">box3</div>
+                </div>
+            </div>
+            <!-- passive  -->
+            <ul class="list" @wheel.passive="demo()">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.js"></script>
         <script>
@@ -31,6 +80,15 @@
                 methods: {
                     showInfo() {
                         alert("Hello!");
+                    },
+                    show(msg) {
+                        console.log(msg);
+                    },
+                    demo() {
+                        for (let i = 0; i < 100000; i++) {
+                            console.log(i);
+                        }
+                        console.log("demo完畢");
                     },
                 },
             });
