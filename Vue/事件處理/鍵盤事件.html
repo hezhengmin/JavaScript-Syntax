@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+        1.常用 @keyup.enter
+        enter
+        esc
+        空格鍵 space
+        tab 必須使用(@keypdown.tab)
+        上 up
+        下 down
+        左 left
+        右 right
+        
+        2.不常用 @keyup.caps-lock 
+        命名方式要用kebab Case，例如鎖定英文大小鍵的CapsLock
+
+        3.系統修飾鍵：ctrl、alt、shift、meta(有windows符號的按鍵)
+        (1)配合@keyup使用，按下修飾鍵同時按下其他鍵，在釋放其他鍵。(ctrl+y，在放開y鍵)
+        (2)配合@keydown使用
+
+        4.@keydown.13，Enter鍵
+
+        5.Vue.config.keyCodes.自定義名稱 = keyCodes
+        
+        -->
+        <div id="root">
+            <div>
+                <label for="in">輸入：</label>
+                <input
+                    id="in"
+                    type="text"
+                    placeholder="按Enter"
+                    @keyup.enter="show"
+                />
+            </div>
+            <div>
+                <label for="CapsLock">輸入：</label>
+                <input
+                    id="CapsLock"
+                    type="text"
+                    placeholder="按CapsLock"
+                    @keyup.caps-lock="show"
+                />
+            </div>
+            <!-- Web瀏覽器未來未移除，不推薦使用@keydown.13，Enter鍵 -->
+            <div>
+                <label for="keycode">輸入：</label>
+                <input
+                    id="keycode"
+                    type="text"
+                    placeholder="@keydown.13，按Enter"
+                    @keydown.13="show"
+                />
+            </div>
+            <!-- 32 空白鍵 -->
+            <div>
+                <label for="space">輸入：</label>
+                <input
+                    id="space"
+                    type="text"
+                    placeholder="按空白鍵"
+                    @keyup.space="show"
+                />
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.js"></script>
+        <script>
+            Vue.config.keyCodes.space = 32;
+            let vm = new Vue({
+                el: "#root",
+                methods: {
+                    show(e) {
+                        console.log(
+                            `e.key = ${e.key} e.keyCode= ${e.keyCode} value = ${e.target.value}`
+                        );
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
