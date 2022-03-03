@@ -24,27 +24,24 @@
                     lastName: "三",
                 },
                 computed: {
+                    /*
+                    完整寫法
                     fullName: {
                         get() {
-                            //重複使用，有暫存只會調用一次
-                            /*
-                            get何時被調用
-                            1.初次讀取fullName
-                            2.依賴的屬性發生變化
-                            */
                             console.log("get被調用");
                             return this.firstName + "-" + this.lastName;
                         },
-                        /*
-                        Console輸入
-                        vm.fullName ='李-五'
-                        */
                         set(value) {
                             console.log("set", value);
                             const result = value.split("-");
                             this.firstName = result[0];
                             this.lastName = result[1];
                         },
+                    },
+                    */
+                    //簡寫
+                    fullName() {
+                        return this.firstName + "-" + this.lastName;
                     },
                 },
             });
