@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="root">
+            <p>今天天氣很{{info}}</p>
+            <button @click="change">切換天氣</button>
+            <p>a = {{numbers.a}}</p>
+            <button @click="numbers.a++">a++</button>
+            <p>b = {{numbers.b}}</p>
+            <button @click="numbers.b++">b++</button>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                el: "#root",
+                data: {
+                    weather: "",
+                    isHot: true,
+                    numbers: {
+                        a: 1,
+                        b: 1,
+                    },
+                },
+                computed: {
+                    info() {
+                        return this.isHot === true ? "炎熱" : "涼爽";
+                    },
+                },
+                methods: {
+                    change() {
+                        this.isHot = !this.isHot;
+                    },
+                },
+                watch: {
+                    isHot: {
+                        handler(newValue, oldValue) {
+                            console.log("isHot被修改了", newValue, oldValue);
+                        },
+                    },
+                    /*
+                    deep:true 監測多層內部值改變
+                    */
+                    numbers: {
+                        deep: true,
+                        handler() {
+                            console.log("numbers被修改了");
+                        },
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
