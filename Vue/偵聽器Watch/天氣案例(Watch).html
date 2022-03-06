@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="root">
+            <p>今天天氣很{{info}}</p>
+            <button @click="change">切換天氣</button>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                el: "#root",
+                data: {
+                    weather: "",
+                    isHot: true,
+                },
+                computed: {
+                    info() {
+                        return this.isHot === true ? "炎熱" : "涼爽";
+                    },
+                },
+                methods: {
+                    change() {
+                        this.isHot = !this.isHot;
+                    },
+                },
+                // 第一種監聽寫法
+                watch: {
+                    isHot: {
+                        //初始化就觸發
+                        immediate: true,
+                        handler(newValue, oldValue) {
+                            console.log("isHot被修改了", newValue, oldValue);
+                        },
+                    },
+                    info: {
+                        //也可以監聽computed的
+                        handler(newValue, oldValue) {
+                            console.log("info被修改了", newValue, oldValue);
+                        },
+                    },
+                },
+            });
+
+            /*
+            第二種監聽寫法
+            vm.$watch("isHot", {
+                immediate: true,
+                handler(newValue, oldValue) {
+                    console.log("isHot被修改了", newValue, oldValue);
+                },
+            });
+            */
+        </script>
+    </body>
+</html>
