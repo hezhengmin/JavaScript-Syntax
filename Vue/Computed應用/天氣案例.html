@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="root">
+            <p>今天天氣很{{info}}</p>
+            <!-- @click="xxx" xxx可以寫簡單語句 -->
+            <!-- <button @click="flag = !flag">切換天氣</button> -->
+            <button @click="change">切換天氣</button>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                el: "#root",
+                data: {
+                    weather: "",
+                    flag: true,
+                },
+                computed: {
+                    info() {
+                        return this.flag === true ? "炎熱" : "涼爽";
+                    },
+                },
+                methods: {
+                    change() {
+                        this.flag = !this.flag;
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
