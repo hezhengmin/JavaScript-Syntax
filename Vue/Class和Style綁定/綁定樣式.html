@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .red {
+                background-color: red;
+            }
+            .blue {
+                background-color: blue;
+            }
+            .green {
+                background-color: green;
+            }
+            .block {
+                height: 100px;
+            }
+            .a1 {
+                border-radius: 5px;
+                border-color: black;
+                border-style: dashed;
+            }
+            .a2 {
+                color: purple;
+            }
+            .a3 {
+                background-color: yellow;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root">
+            <div class="block" :class="bg" @click="func"></div>
+            <br /><br />
+            <br /><br />
+            <!-- class -->
+            <div class="block" :class="classArr">{{name}}</div>
+            <br /><br />
+            <br /><br />
+            <div class="block" :class="classObj" @click="change">{{name}}</div>
+            <!-- sytle -->
+            <br /><br />
+            <br /><br />
+            <div class="block" :style="styleArr">{{name}}</div>
+            <br /><br />
+            <br /><br />
+            <div class="block" :style="styleObj">{{name}}</div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                el: "#root",
+                data: {
+                    name: "區塊一",
+                    bg: "red",
+                    classArr: ["a1", "a2", "a3"],
+                    classObj: {
+                        a1: true,
+                        a2: true,
+                    },
+                    styleObj: {
+                        fontSize: "40px",
+                        borderColor: "black",
+                        borderStyle: "solid",
+                    },
+                    styleArr: [
+                        {
+                            borderColor: "black",
+                            borderStyle: "dotted",
+                        },
+                        {
+                            backgroundColor: "gray",
+                        },
+                    ],
+                },
+                methods: {
+                    func() {
+                        const arr = ["blue", "green", "red"];
+                        const idx = Math.floor(Math.random() * 3);
+                        this.bg = arr[idx];
+                    },
+                    change() {},
+                },
+            });
+        </script>
+    </body>
+</html>
