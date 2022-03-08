@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="root">
+            <h1>目前n的值：{{n}}</h1>
+            <button @click="n++">n+1</button>
+            <button @click="n--">n-1</button>
+            <!-- 切換平率高，使用v-show -->
+            <div v-show="n===1">Angular</div>
+            <div v-show="n===2">React</div>
+            <div v-show="n===3">Vue</div>
+
+            <!-- v-if、v-else-if、v-else -->
+            <div v-if="n===1">Angular</div>
+            <div v-else-if="n===2">React</div>
+            <div v-else-if="n===3">Vue</div>
+            <div v-else>None</div>
+
+            <!-- v-if 和 template 配合使用-->
+            <template v-if="n===1"> {{info}} </template>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            let vm = new Vue({
+                el: "#root",
+                data: {
+                    info: "安安",
+                    n: 0,
+                },
+            });
+        </script>
+    </body>
+</html>
