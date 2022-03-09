@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="root">
+            <!-- 遍歷數組 -->
+            <h2>遍歷數組</h2>
+            <ul v-for="(d,index) of drinks" :key="index">
+                <li>{{d.name}} = {{d.item}}</li>
+            </ul>
+            <!-- 遍歷對象 -->
+            <h2>遍歷對象</h2>
+            <ul v-for="(o,k) of obj" :key="k">
+                <li>{{o}} = {{k}}</li>
+            </ul>
+            <!-- 遍歷字串 -->
+            <h2>遍歷字串</h2>
+            <ul v-for="(o,k) of str" :key="k">
+                <li>{{o}} = {{k}}</li>
+            </ul>
+            <!-- 遍歷指定次數 -->
+            <h2>遍歷指定次數</h2>
+            <ul v-for="(o,k) of 5" :key="k">
+                <li>{{o}} = {{k}}</li>
+            </ul>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            new Vue({
+                el: "#root",
+                data: {
+                    drinks: [
+                        { id: "01", item: "Coffee", name: "咖啡" },
+                        { id: "02", item: "Tea", name: "茶" },
+                        { id: "03", item: "Milk", name: "牛奶" },
+                    ],
+                    obj: {
+                        name: "MingHe",
+                        country: "Taiwan",
+                    },
+                    str: "Hello",
+                },
+            });
+        </script>
+    </body>
+</html>
