@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="root">
+            <input type="text" v-model="keyword" />
+            <button @click="sortType = 2">年齡升序</button>
+            <button @click="sortType = 1">年齡降序</button>
+            <button @click="sortType = 0">年齡原序</button>
+
+            <ul v-for="p of filterPersons" :key="p.id">
+                <li>{{p.name}} - {{p.age}} {{p.gender}}</li>
+            </ul>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            new Vue({
+                el: "#root",
+                data: {
+                    keyword: "",
+                    sortType: 0,
+                    persons: [
+                        { id: "01", age: 30, name: "馬冬梅", gender: "女" },
+                        { id: "02", age: 38, name: "周冬雨", gender: "女" },
+                        { id: "03", age: 18, name: "周杰倫", gender: "男" },
+                        { id: "04", age: 21, name: "溫兆倫", gender: "男" },
+                    ],
+                },
+                computed: {
+                    filterPersons() {
+                        const arr = this.persons.filter((m) => {
+                            return m.name.indexOf(this.keyword) !== -1;
+                        });
+
+                        //升序2 降序1
+                        if (this.sortType) {
+                            arr.sort((p1, p2) => {
+                                return this.sortType === 2
+                                    ? p1.age - p2.age
+                                    : p2.age - p1.age;
+                            });
+                        }
+
+                        return arr;
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
