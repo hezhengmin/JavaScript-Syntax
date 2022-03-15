@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="root">
+            <button @click="add">加入性別</button>
+            <h2>姓名：{{student.name}}</h2>
+
+            <!-- 
+                Console
+                輸入第一種:
+                Vue.set(vm._data.student,"school","中科大"); 
+                輸入第二種:
+                Vue.set(vm.student,"school","中科大"); 
+            -->
+            <h2>學校：{{student.school}}</h2>
+
+            <h2 v-if="student.gender">性別：{{student.gender}}</h2>
+            <ul v-for="(f,index) in student.friends">
+                <li>姓名：{{f.name}} 年齡:{{f.age}}</li>
+            </ul>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            let vm = new Vue({
+                el: "#root",
+                data: {
+                    name: "MingHe",
+                    address: "Taichung",
+                    student: {
+                        name: "ming",
+                        age: {
+                            rAge: 40,
+                            sAge: 29,
+                        },
+                        friends: [
+                            { name: "jerry", age: 35 },
+                            { name: "tony", age: 36 },
+                        ],
+                    },
+                },
+                methods: {
+                    add() {
+                        //Vue.set(this.student, "gender", "male");
+                        this.$set(this.student, "gender", "male");
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
