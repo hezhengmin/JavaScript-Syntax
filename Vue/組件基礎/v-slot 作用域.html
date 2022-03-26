@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="root">
+            <dialogue description="none">
+                外層的 data 資料：{{school}}
+                <hr />
+                <!-- 模組內的 props 資料： {{ description }} 會有錯誤-->
+                <hr />
+                <!-- 模組內的 data 資料： {{ user.name }} 會有錯誤-->
+            </dialogue>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.js"></script>
+
+        <script>
+            Vue.component("dialogue", {
+                props: ["description"],
+                template: `
+                <div>
+                    模組內的 props 資料： {{description}}
+                    <hr/>
+                    <slot></slot>    
+                </div>
+                `,
+                data() {
+                    return {
+                        user: {
+                            name: "MingHe",
+                            age: 30,
+                        },
+                    };
+                },
+            });
+
+            let vm = new Vue({
+                el: "#root",
+                data() {
+                    return {
+                        school: "NUTC",
+                    };
+                },
+            });
+        </script>
+    </body>
+</html>
