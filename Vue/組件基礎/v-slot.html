@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="root">
+            <dialogue>
+                <!-- 具名插槽 -->
+                <template v-slot:header><h1>header</h1></template>
+                <template v-slot:container><h1>container</h1></template>
+                <template v-slot:footer><h1>footer</h1></template>
+            </dialogue>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.js"></script>
+
+        <script>
+            Vue.component("dialogue", {
+                template: `
+                <div>
+                    <slot name='header'></slot>    
+                    <slot name='container'></slot>    
+                    <slot name='footer'></slot>    
+                </div>
+                `,
+            });
+
+            let vm = new Vue({
+                el: "#root",
+                data() {
+                    return {};
+                },
+            });
+        </script>
+    </body>
+</html>
