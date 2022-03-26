@@ -11,7 +11,7 @@
             <dialogue>
                 <!-- 具名插槽 -->
                 <template v-slot:header><h1>header</h1></template>
-                <template v-slot:container><h1>container</h1></template>
+                <h1>container</h1>
                 <template v-slot:footer><h1>footer</h1></template>
             </dialogue>
         </div>
@@ -22,7 +22,7 @@
                 template: `
                 <div>
                     <slot name='header'></slot>    
-                    <slot name='container'></slot>    
+                    <slot></slot>    
                     <slot name='footer'></slot>    
                 </div>
                 `,
