@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="root">
+            <dialogue description="desc">
+                <!-- v-slot:[動態插槽名] ，全為都小寫 -->
+                <template v-slot:[dynamicname]>這個是 {{dynamicname}}</template>
+            </dialogue>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.js"></script>
+
+        <script>
+            Vue.component("dialogue", {
+                props: ["description"],
+                template: `
+                <div>
+                    <slot name='header'>header</slot>    
+                    <br/>
+                    <slot name='container'>container</slot>    
+                    <br/>
+                    <slot name='footer'>footer</slot>    
+                </div>
+                `,
+                data() {
+                    return {
+                        user: {
+                            name: "MingHe",
+                            age: 30,
+                        },
+                        fruit: ["apple", "banana", "orange"],
+                    };
+                },
+            });
+
+            let vm = new Vue({
+                el: "#root",
+                data() {
+                    return {
+                        school: "NUTC",
+                        dynamicname: "header",
+                    };
+                },
+            });
+        </script>
+    </body>
+</html>
