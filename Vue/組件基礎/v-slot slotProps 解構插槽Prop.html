@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="root">
+            <ul>
+                <li>
+                    <dialogue description="desc">
+                        <template v-slot:default="{ user,fruit }">
+                            名字：{{ user.name }}<br />
+                            年齡：{{ user.age }} <br />
+                            水果：{{ fruit[1] }}<br />
+                        </template>
+                    </dialogue>
+                </li>
+                <li>
+                    <dialogue v-slot:default="{ user: person,fruit }">
+                        名字：{{ person.name }}<br />
+                        年齡：{{ person.age }} <br />
+                        水果：{{ fruit[2] }}<br />
+                    </dialogue>
+                </li>
+            </ul>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.js"></script>
+
+        <script>
+            Vue.component("dialogue", {
+                props: ["description"],
+                template: `
+                <div>
+                    <h2>模組內的 props 資料： {{description}} </h2>
+                    <slot :user="user" :fruit="fruit"></slot>    
+                </div>
+                `,
+                data() {
+                    return {
+                        user: {
+                            name: "MingHe",
+                            age: 30,
+                        },
+                        fruit: ["apple", "banana", "orange"],
+                    };
+                },
+            });
+
+            let vm = new Vue({
+                el: "#root",
+                data() {
+                    return {
+                        school: "NUTC",
+                    };
+                },
+            });
+        </script>
+    </body>
+</html>
