@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="root">
+            <button @click="push">push("爬山")</button>
+            <button @click="pop">pop()</button>
+            <button @click="splice">splice("睡覺", 0, 1)</button>
+            <button @click="splice_del">splice(2, 1, "睡覺")</button>
+            <button @click="shift">shift()</button>
+            <button @click="unshift">unshift("睡覺","唱歌")</button>
+            <button @click="sort">sort()</button>
+            <button @click="reverse">reverse()</button>
+            <ul v-for="h in student.hoppy">
+                <li>{{h}}</li>
+            </ul>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            let vm = new Vue({
+                el: "#root",
+                data: {
+                    student: {
+                        hoppy: ["打球", "玩遊戲", "看書"],
+                    },
+                },
+                methods: {
+                    push() {
+                        /*
+                        這裡的push是vue裡面的
+                        vm._data.student.hoppy.push === Array.prototype.push
+                        false
+                        */
+                        this.student.hoppy.push("爬山");
+                    },
+                    pop() {
+                        this.student.hoppy.pop();
+                    },
+                    splice() {
+                        this.student.hoppy.splice(1, 0, "睡覺");
+                    },
+                    splice_del() {
+                        // this.student.hoppy[2] = "睡覺"; 直接改vue不奏效
+                        // Vue.set(vm.student.hoppy,2,"睡覺"); vue奏效
+                        // Vue.set(vm._data.student.hoppy,2,"睡覺");
+                        this.student.hoppy.splice(2, 1, "睡覺");
+                    },
+                    shift() {
+                        this.student.hoppy.shift();
+                    },
+                    unshift() {
+                        this.student.hoppy.unshift("睡覺", "唱歌");
+                    },
+                    sort() {
+                        this.student.hoppy.sort();
+                    },
+                    reverse() {
+                        this.student.hoppy.reverse();
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
+<!-- 
+增刪改查 7種方式
+push、pop、splice、shift、unshift、sort、reverse
+
+-->
