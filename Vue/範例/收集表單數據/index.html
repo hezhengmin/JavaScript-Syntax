@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="root">
+            <form @submit.prevent="submit">
+                帳號：<input type="text" v-model.trim="userInfo.account" />
+                <br />
+                密碼：<input
+                    type="password"
+                    v-model="userInfo.password"
+                /><br />
+                年齡：<input
+                    type="number"
+                    v-model.number="userInfo.age"
+                /><br />
+                性別：男<input
+                    type="radio"
+                    value="male"
+                    v-model="userInfo.gender"
+                />女<input
+                    type="radio"
+                    value="female"
+                    v-model="userInfo.gender"
+                /><br />
+                愛好：學習<input
+                    type="checkbox"
+                    v-model="userInfo.hoppy"
+                    value="study"
+                />
+                打遊戲<input
+                    type="checkbox"
+                    v-model="userInfo.hoppy"
+                    value="game"
+                />
+                吃飯<input
+                    type="checkbox"
+                    v-model="userInfo.hoppy"
+                    value="eat"
+                />
+                <br />
+                縣市：
+                <select v-model="userInfo.city">
+                    <option value="">請選擇</option>
+                    <option value="taipei">台北</option>
+                    <option value="taichung">台中</option>
+                    <option value="tainan">台南</option>
+                </select>
+                <br />
+
+                其他訊息：
+                <textarea
+                    name="msg"
+                    cols="30"
+                    rows="5"
+                    v-model.lazy="userInfo.message"
+                ></textarea>
+                <br />
+                閱讀並接受：<input type="checkbox" v-model="userInfo.agree" />
+                <button>提交</button>
+            </form>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            let vm = new Vue({
+                el: "#root",
+                data: {
+                    userInfo: {
+                        account: "",
+                        password: "",
+                        age: "",
+                        gender: "",
+                        hoppy: [],
+                        city: "",
+                        message: "",
+                        agree: false,
+                    },
+                },
+                methods: {
+                    submit() {
+                        console.log(JSON.stringify(this.userInfo));
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
