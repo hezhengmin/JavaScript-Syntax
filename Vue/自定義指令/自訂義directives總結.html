@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="root">
+            <h2>{{name}}</h2>
+            <h2><span v-text="n"></span></h2>
+            <button @click="n++">n+1</button>
+            <h2><span v-big-number="n">{{n}}</span></h2>
+            <input type="text" v-fbind:value="n" />
+            <p v-pin:[direction]="200">
+                I am pinned onto the page at 200px to the left.
+            </p>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            //全局指令
+            Vue.directive("pin", {
+                bind(el, binding, vnode) {
+                    el.style.position = "fixed";
+                    console.log("v-pin el", el);
+                    let s = binding.arg == "left" ? "left" : "top";
+                    el.style[s] = binding.value + "px";
+                },
+            });
+            let vm = new Vue({
+                el: "#root",
+                data() {
+                    return {
+                        name: "Ming",
+                        n: 1,
+                        direction: "left",
+                    };
+                },
+                directives: {
+                    /*
+                    big函數何時被調用
+                    1.一綁定
+                    2.母版底下數據被修改
+                    */
+                    "big-number": function (element, binding) {
+                        console.log("big", this); //指令底下的this是window
+                        element.innerText = binding.value * 10;
+                        //console.log(element instanceof HTMLElement); 結果 true
+                    },
+
+                    fbind: {
+                        //指令與元素成功綁定時
+                        bind(element, binding) {
+                            console.log("bind");
+                            element.value = binding.value;
+                        },
+                        //指令所在元素被插入頁面時
+                        inserted(element, binding) {
+                            console.log("inserted");
+                            element.focus();
+                        },
+                        //指定所在的模板被重新解析時
+                        update(element, binding) {
+                            console.log("update");
+                            element.value = binding.value;
+                        },
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
