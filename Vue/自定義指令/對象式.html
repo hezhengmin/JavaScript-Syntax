@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="root">
+            <h2>{{name}}</h2>
+            <h2><span v-text="n"></span></h2>
+            <button @click="n++">n+1</button>
+            <h2><span v-big="n">{{n}}</span></h2>
+            <input type="text" v-fbind:value="n" />
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            let vm = new Vue({
+                el: "#root",
+                data() {
+                    return {
+                        name: "Ming",
+                        n: 1,
+                    };
+                },
+                directives: {
+                    /*
+                    big函數何時被調用
+                    1.一綁定
+                    2.母版底下數據被修改
+                    */
+                    big(element, binding) {
+                        // console.log("big");
+                        element.innerText = binding.value * 10;
+                        //console.log(element instanceof HTMLElement); 結果 true
+                    },
+
+                    fbind: {
+                        //指令與元素成功綁定時
+                        bind(element, binding) {
+                            console.log("bind");
+                            element.value = binding.value;
+                        },
+                        //指令所在元素被插入頁面時
+                        inserted(element, binding) {
+                            console.log("inserted");
+                            element.focus();
+                        },
+                        //指定所在的模板被重新解析時
+                        update(element, binding) {
+                            console.log("update");
+                            element.value = binding.value;
+                        },
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
