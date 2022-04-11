@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Emit</title>
+    </head>
+    <body>
+        <div id="app">
+            <h1>{{Text}}</h1>
+            <template v-for="(item, index) in List">
+                <btn
+                    :name="item.name"
+                    v-on:show="ParentShow($event,index)"
+                ></btn>
+            </template>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.js"></script>
+        <script>
+            Vue.component("btn", {
+                props: ["name"],
+                template: `
+                  <div>
+                      <button @click="showText">{{name}}</button>
+                  </div>
+                  `,
+                data() {
+                    return {
+                        txt: this.name,
+                    };
+                },
+                methods: {
+                    showText() {
+                        // show是自訂的名稱
+                        this.$emit("show", this.txt);
+                    },
+                },
+            });
+            let vm = new Vue({
+                el: "#app",
+                data: {
+                    Text: "",
+                    List: [
+                        { name: "一", val: "one" },
+                        { name: "二", val: "two" },
+                        { name: "三", val: "three" },
+                    ],
+                },
+                methods: {
+                    ParentShow(_txt, index) {
+                        this.Text = _txt;
+                        console.log(_txt, index);
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
