@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>map()</title>
+    </head>
+    <body>
+        <script>
+            let arr = [
+                { id: 1, date: "2022-04-19" },
+                { id: 2, date: "2022-04-20" },
+            ];
+            console.log(arr);
+
+            const m = arr.map((ele) => Object.values(ele)[1]);
+
+            console.log(m); // ['2022-04-19', '2022-04-20']
+
+            /*
+            修改物件陣列中的物件值
+            */
+            const array = [
+                    { id: 1, name: "Dave", tax: 123.34543 },
+                    { id: 2, name: "John", tax: 3243.12323 },
+                    { id: 3, name: "Tom", tax: null },
+                ],
+                result = array.map((o) =>
+                    Object.assign({}, o, {
+                        tax:
+                            o.tax === null ? -1 : Math.round(o.tax * 100) / 100,
+                    })
+                );
+
+            console.log(result);
+            console.log(array);
+        </script>
+    </body>
+</html>
