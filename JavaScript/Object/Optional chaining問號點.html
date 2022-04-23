@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+            1. ?. 讀取或刪除，但不能寫入
+            2. ?.左側判斷不存在，回傳undefined
+         -->
+        <script>
+            let user = {}; // a user without "address" property
+            // alert(user.address.street); // Error!
+
+            user = {
+                address: {},
+            };
+            alert(user?.address?.street); //undefined
+
+            let key = "firstName";
+
+            let user1 = {
+                firstName: "John",
+            };
+
+            let user2 = null;
+
+            alert(user1?.[key]); // John
+            alert(user2?.[key]); // undefined
+
+            // user2?.name = "Ming"; //不能寫入
+        </script>
+    </body>
+</html>
