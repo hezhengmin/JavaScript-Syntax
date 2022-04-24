@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            //1.通过引用来比较
+            let a = {};
+            let b = a; // 复制引用
+
+            alert(a == b); // true，都引用同一对象
+            alert(a === b); // true
+
+            let c = {},
+                d = {};
+            alert(c == d); //false
+
+            //2. Object.assign
+            //Object.assign(dest, [src1, src2, src3...])
+            let user = { name: "ming" };
+            let permissions1 = { canEdit: true };
+            let permissions2 = { canView: true };
+            Object.assign(user, permissions1, permissions2);
+            console.log(user);
+
+            // 複製物件
+            const person = {
+                firstName: "John",
+                lastName: "Doe",
+                age: 50,
+                eyeColor: "blue",
+            };
+            let clone = Object.assign({}, person);
+        </script>
+    </body>
+</html>
