@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <button onclick="clickPromptByUser()">prompt提示(user計算屬性)</button>
+        <script>
+            let user = new Object(); //也可以使用這種 let user = {};
+
+            user = {
+                name: "minghe",
+                age: 26,
+            };
+
+            console.log(user); //{name: 'minghe', age: 26}
+
+            user.isAdmin = true;
+
+            console.log("新增屬性後", user); //{name: 'minghe', age: 26, isAdmin: true}
+
+            delete user.age;
+
+            console.log("移除屬性後", user); //{name: 'minghe', isAdmin: true}
+
+            //計算屬性
+            function clickPromptByUser() {
+                let key = prompt(
+                    "What do you want to know about the user?",
+                    "name"
+                );
+
+                alert(user[key]); //minghe
+            }
+
+            //屬性存在性測試，“in” 操作符
+            console.log("name" in user); //true
+
+            // for in 遍歷
+            user.age = 28;
+            for (const key in user) {
+                console.log(`key = ${key} ，屬性鍵的值 ${user[key]}`);
+            }
+        </script>
+    </body>
+</html>
