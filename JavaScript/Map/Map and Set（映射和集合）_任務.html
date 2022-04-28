@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            /*
+                        過濾數組中的唯一元素
+                        重要程度: 5
+                        定義 arr 為一個數組。
+
+                        創建一個函數unique(arr)，該函數返回一個由 arr 中所有唯一元素所組成的數組。
+                        */
+
+            //1.
+            function unique(arr) {
+                let set = new Set();
+                arr.forEach((element) => {
+                    set.add(element);
+                });
+                return Array.from(set);
+            }
+
+            //官方解答
+            // function unique(arr) {
+            //     return Array.from(new Set(arr));
+            // }
+
+            let values = [
+                "Hare",
+                "Krishna",
+                "Hare",
+                "Krishna",
+                "Krishna",
+                "Krishna",
+                "Hare",
+                "Hare",
+                ":-O",
+            ];
+
+            //alert(unique(values)); // Hare, Krishna, :-O
+
+            /*
+                        2.
+                        定義 arr 為一個數組。
+
+                        創建一個函數unique(arr)，該函數返回一個由 arr 中所有唯一元素所組成的數組。
+                        */
+
+            function aclean(arr) {
+                let set = new Set();
+                arr.forEach((m) => {
+                    set.add(m.toLowerCase().split("").sort().join(""));
+                });
+
+                return [...set];
+            }
+
+            let arr = [
+                "nap",
+                "teachers",
+                "cheaters",
+                "PAN",
+                "ear",
+                "era",
+                "hectares",
+            ];
+
+            alert(aclean(arr)); // "nap,teachers,ear" or "PAN,cheaters,era"
+
+            /*
+            我們期望使用 map.keys() 得到一個數組，然後使用例如 .push 等特定的方法對其進行處理。
+
+            但是運行不了：
+            */
+
+            let map = new Map();
+
+            map.set("name", "John");
+
+            let keys = map.keys();
+
+            for (const k of keys) {
+                console.log(`${k}`);
+            }
+
+            keys = Array.from(map.keys());
+
+            // Error: keys.push is not a function
+            keys.push("more");
+
+            alert(keys);
+        </script>
+    </body>
+</html>
