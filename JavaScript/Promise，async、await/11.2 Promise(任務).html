@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title></title>
+    </head>
+    <body>
+        <script>
+            // 1. 下列這段代碼會輸出什麼？
+            let promise = new Promise(function (resolve, reject) {
+                resolve(1);
+
+                setTimeout(() => resolve(2), 1000);
+            });
+
+            promise.then(alert); // 1
+
+            /*
+            2.
+            基於promise 的延時
+            內建函數 setTimeout 使用了回調函數。請創建一個基於promise 的替代方案。
+
+            函數 delay(ms) 應該返回一個promise。這個promise 應該在 ms 毫秒後被resolve，所以我們可以向其中添加.then，像這樣：
+            */
+
+            function delay(ms) {
+                return new Promise((resolve) => {
+                    setTimeout(resolve, ms);
+                });
+            }
+
+            delay(3000).then(() => alert("runs after 3 seconds"));
+
+            // 3.
+        </script>
+    </body>
+</html>
+
+<!-- 題目 https://zh.javascript.info/promise-basics#tasks -->
