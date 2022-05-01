@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title></title>
+    </head>
+    <body>
+        <script>
+            // 1. 返回promise
+            /*let promise = new Promise(function (resolve, reject) {
+                setTimeout(() => {
+                    resolve(1);
+                }, 2000);
+            })
+                .then((result) => {
+                    alert(result); // 1
+                    return new Promise(function (resolve) {
+                        setTimeout(() => resolve(result * 2), 2000);
+                    });
+                })
+                .then((result) => {
+                    alert(result); // 2
+                    return new Promise(function (resolve) {
+                        setTimeout(() => resolve(result * 2), 2000);
+                    });
+                })
+                .then((result) => {
+                    alert(result); // 4
+                });*/
+            //2.示例：loadScript
+
+            //3.更複雜的示例：fetch
+            fetch(
+                "https://zh.javascript.info/article/promise-chaining/user.json"
+            )
+                .then((response) => response.json())
+                .then((user) => {
+                    user.name = "hezhengmin"; // 先改成自己的帳號
+                    return fetch(`https://api.github.com/users/${user.name}`);
+                })
+                .then((response) => response.json())
+                .then(
+                    (githubUser) =>
+                        new Promise(function (resolve, reject) {
+                            let img = document.createElement("img");
+                            img.src = githubUser.avatar_url;
+                            document.body.append(img);
+
+                            setTimeout(() => {
+                                img.remove();
+                                resolve(githubUser);
+                            }, 2000);
+                        })
+                )
+                .then((githubUser) => alert(githubUser.name));
+        </script>
+    </body>
+</html>
