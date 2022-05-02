@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            /*
+            1.
+            用async/await 來重寫
+            重寫下面這個來自Promise 鏈 一章的示例代碼，使用 async/await 而不是.then/catch：
+            function loadJson(url) {
+                return fetch(url)
+                    .then(response => {
+                        if (response.status == 200) {
+                            return response.json();
+                        } else {
+                            throw new Error(response.status);
+                        }
+                    });
+            }
+
+            loadJson('https://javascript.info/no-such-user.json')
+            .catch(alert); // Error: 404
+            */
+
+            function loadJson(url) {
+                return fetch(url).then((response) => {
+                    if (response.status == 200) {
+                        return response.json();
+                    } else {
+                        throw new Error(response.status);
+                    }
+                });
+            }
+
+            /*
+            3.
+            在非async 函數中調用async 函數
+            我們有一個名為 f 的“普通”函數。你會怎樣調用 async 函數 wait() 並在 f 中使用其結果？
+            */
+            async function wait() {
+                await new Promise((resolve) => setTimeout(resolve, 1000));
+
+                return 10;
+            }
+
+            function f() {
+                wait().then((result) => alert(result));
+            }
+
+            f();
+        </script>
+    </body>
+</html>
