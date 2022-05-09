@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            //1. Object.keys，values，entries
+            const student = {
+                firstName: "ram",
+                class: 10,
+            };
+
+            Object.keys(student); // ['firstName', 'class']
+            Object.values(student); // ['ram', 10]
+            Object.entries(student); //包含該對象所有[key, value] 鍵值對的數組
+
+            /*
+            2.轉換對象
+
+            Object.fromEntries( iterator )
+            iterator 必須為 map 或 array
+            您可以從轉換 Array 為 Object
+            */
+            const object1 = { a: 1, b: 2, c: 3 };
+
+            object2 = Object.fromEntries(
+                Object.entries(object1).map(([key, val]) => [key, val * 2])
+            );
+
+            console.log(object2); //{a: 2, b: 4, c: 6}
+
+            /*
+            任務 1
+            有一個帶有任意數量薪水的 salaries 對象。
+            編寫函數sumSalaries(salaries)，該函數使用 Object.values 和 for..of 循環返回所有薪水的總和。
+            如果 salaries 是空對象，那麼結果必須是0。
+            */
+            let salaries = {
+                John: 100,
+                Pete: 300,
+                Mary: 250,
+            };
+
+            function sumSalaries(salaries) {
+                let sum = 0;
+
+                for (const iterator of Object.values(salaries)) {
+                    sum += iterator;
+                }
+                return sum;
+            }
+
+            alert(sumSalaries(salaries)); // 650
+
+            /*
+            任務 2
+            寫一個函數count(obj)，該函數返回對像中的屬性的數量：
+            */
+            let user = {
+                name: "John",
+                age: 30,
+            };
+
+            const count = (obj) => Object.keys(obj).length;
+            alert(count(user)); // 2
+        </script>
+    </body>
+</html>
