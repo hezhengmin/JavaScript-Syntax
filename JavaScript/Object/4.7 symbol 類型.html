@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            //1. symbol值表示唯一的標識符
+            let id = Symbol("id");
+            console.log(id.description); // 'id'
+
+            //2.“隱藏”屬性
+            let age = Symbol("age");
+            let user = { name: "ming", [age]: 26 };
+
+            user[id] = 777;
+            user.id = 555;
+            // {name: 'ming', id: 555, Symbol(age): 26, Symbol(id): 777}
+
+            /*
+            3.全局symbol
+
+            Symbol.for() -建立一個 global Symbol，不會重複建立
+            
+            Symbol.keyFor() -取得某個 global Symbol 的 key 名稱
+            */
+
+            Symbol.for("foo"); // Symbol(foo)
+
+            let test = Symbol.for("bar");
+
+            Symbol.keyFor(test); //'bar'
+            //4.系統symbol
+        </script>
+    </body>
+</html>
