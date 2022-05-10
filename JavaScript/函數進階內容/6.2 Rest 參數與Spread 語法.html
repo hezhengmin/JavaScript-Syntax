@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // 1. Rest 參數...
+            function sumAll(...args) {
+                let sum = 0;
+                for (const i of args) {
+                    sum += i;
+                }
+                return sum;
+            }
+            alert(sumAll(1, 2, 3, 4, 5));
+
+            // 2. “arguments” 變量
+
+            function showName() {
+                alert(arguments.length);
+                alert(arguments[0]);
+                alert(arguments[1]);
+
+                // 它是可遍历的
+                // for(let arg of arguments) alert(arg);
+            }
+
+            showName("Cindy", "Sam");
+
+            // 3. Spread 語法
+
+            let arr = [3, 5, 1];
+            alert(Math.max(...arr));
+            let str = "hello!";
+            // [...str]
+            // (6) ['h', 'e', 'l', 'l', 'o', '!'] 等同於 Array.from(str)
+
+            // 4. 複製array/object
+
+            let array = [1, 2, 3];
+            let arrayCopy = [...array];
+
+            let obj = { a: 1, b: 2, c: 3 };
+            let objCopy = { ...obj };
+        </script>
+    </body>
+</html>
