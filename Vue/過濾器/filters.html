@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="js/dayjs.min.js"></script>
+    </head>
+    <body>
+        <div id="root">
+            <h3>現在時間：{{fmtTime}}</h3>
+            <h3>現在時間：{{getFmtTime()}}</h3>
+            <!-- 過濾器 -->
+            <h3>現在時間：{{time | timeFormatter}}</h3>
+            <!-- 過濾器傳遞參數 -->
+            <h3>現在時間：{{time | timeFormatter('YYYY年MM月DD日')}}</h3>
+            <h3>
+                現在時間：{{time | timeFormatter('YYYY年MM月DD日') | mySlice}}
+            </h3>
+            <!-- x="尚矽谷V" -->
+            <h3 :x="msg | mySlice">尚矽谷Vue技術 過濾器</h3>
+        </div>
+
+        <div id="root2">{{msg | mySlice}}</div>
+        <script>
+            //全局過濾器
+            Vue.filter("mySlice", function (value) {
+                return value.slice(0, 4);
+            });
+
+            new Vue({
+                el: "#root2",
+                data: {
+                    msg: "123456789",
+                },
+            });
+            let vm = new Vue({
+                el: "#root",
+                data: {
+                    time: 1621561377603, //時間戳記
+                    msg: "尚矽谷Vue技術 過濾器",
+                },
+                computed: {
+                    fmtTime() {
+                        return dayjs(this.time).format(
+                            "YYYY年MM月DD日 HH:mm:ss"
+                        );
+                    },
+                },
+                methods: {
+                    getFmtTime() {
+                        return dayjs(this.time).format(
+                            "YYYY年MM月DD日 HH:mm:ss"
+                        );
+                    },
+                },
+                //局部過濾器
+                filters: {
+                    timeFormatter(value, format = "YYYY/MM/DD HH:mm:ss") {
+                        return dayjs(value).format(format);
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
