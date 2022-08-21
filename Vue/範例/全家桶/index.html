@@ -4,16 +4,51 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="css/style.css" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css"
+        />
+        <link rel="stylesheet" href="css/style.css" />
+
         <title>Document</title>
         <div id="app" class="bg">
             <div class="container">
-                <div class="my-3 text-center">
+                <div class="my-5 text-center">
                     <img v-bind:src="logoSrc" alt="" />
                 </div>
-                <div class="mb-3 text-center">
+                <div class="mb-5 text-center">
                     <h1 v-text="title"></h1>
+                </div>
+                <div class="mt-5 text-center">
+                    <div class="d-flex justify-content-between">
+                        <div class="p-2">
+                            <button
+                                :disabled="!(index > 0)"
+                                type="button"
+                                @click="changeIndex(-1)"
+                                class="btn btn-primary"
+                            >
+                                <i class="bi bi-arrow-left"></i>
+                            </button>
+                        </div>
+                        <div class="p-2 text-center">
+                            <span class="fs-4 bg-success text-white p-3">{{index + 1}}</span>
+                            <span class="fs-4 bg-danger text-white p-3">{{currentMenu.type}}</span>
+                            <span class="fs-4 bg-warning p-3">{{currentMenu.title}}</span>
+                        </div>
+                        <!-- 到最後一個就不顯示->按鈕 -->
+                        <div class="p-2">
+                            <button
+                                :disabled="!(index < menuLength-1)"
+                                type="button"
+                                @click="changeIndex(1)"
+                                class="btn btn-primary"
+                            >
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -26,8 +61,118 @@
                 data: {
                     title: "Vue.js 手牽手，一起嗑光全家桶",
                     logoSrc: "./image/logo.png",
+                    index: 0,
+                    menu: [
+                        { type: "主廚的話", title: "餐點簡介與相關說明", link: "javascript:;" },
+                        {
+                            type: "餐具擺盤",
+                            title: "萬用白瓷 VS Code 與套裝工具組",
+                            link: "javascript:;",
+                        },
+                        {
+                            type: "開胃餐點",
+                            title: "中式資料綁定佐無毒 jQuery 畫面處理",
+                            link: "javascript:;",
+                        },
+                        { type: "開胃餐點", title: "古早味事件燉畫面綁定", link: "javascript:;" },
+                        { type: "開胃餐點", title: "清爽表單處理佐雙向資料", link: "javascript:;" },
+                        { type: "開胃餐點", title: "使用者輸入焗列表呈現", link: "javascript:;" },
+                        { type: "開胃餐點", title: "期間限定篩選佐資料轉換", link: "javascript:;" },
+                        { type: "開胃餐點", title: "峰峰相連互動式資料表單", link: "javascript:;" },
+                        {
+                            type: "風味沙拉",
+                            title: "天然 CSS 過場佐 jQuery 動畫",
+                            link: "javascript:;",
+                        },
+                        { type: "風味沙拉", title: "異國風情資料觀測與設定", link: "javascript:;" },
+                        { type: "風味沙拉", title: "有機發酵生命週期", link: "javascript:;" },
+                        {
+                            type: "總匯拼盤",
+                            title: "家鄉通訊錄佐手作 API #1",
+                            link: "javascript:;",
+                        },
+                        {
+                            type: "總匯拼盤",
+                            title: "家鄉通訊錄佐手作 API #2",
+                            link: "javascript:;",
+                        },
+                        {
+                            type: "用餐插曲",
+                            title: "怎麼沒有魯肉飯!? 其他菜色瀏覽",
+                            link: "javascript:;",
+                        },
+                        {
+                            type: "餐具擺盤",
+                            title: "特製雕花 Vue-cli 3.0 與 Node.js 開發環境",
+                            link: "javascript:;",
+                        },
+                        { type: "主廚推薦", title: "科學單檔模組化料理", link: "javascript:;" },
+                        { type: "主廚推薦", title: "清燉嫩煮百頁路由", link: "javascript:;" },
+                        { type: "主廚推薦", title: "蜂蜜燴巢狀路由", link: "javascript:;" },
+                        { type: "主廚推薦", title: "五彩繽紛路由參數與監控", link: "javascript:;" },
+                        {
+                            type: "主廚推薦",
+                            title: "共享式集中數據管理大雜燴",
+                            link: "javascript:;",
+                        },
+                        { type: "主廚推薦", title: "精緻模組化數據塔", link: "javascript:;" },
+                        {
+                            type: "用餐插曲",
+                            title: "我吃不下了!! 食用順序的選擇與進程",
+                            link: "javascript:;",
+                        },
+                        {
+                            type: "總匯拼盤",
+                            title: "復古總匯 TodoList 燴路由模組",
+                            link: "javascript:;",
+                        },
+                        {
+                            type: "總匯拼盤",
+                            title: "復古總匯 TodoList 燴資料模組",
+                            link: "javascript:;",
+                        },
+                        {
+                            type: "總匯拼盤",
+                            title: "復古總匯 TodoList 燴頁面模組 #1",
+                            link: "javascript:;",
+                        },
+                        {
+                            type: "總匯拼盤",
+                            title: "復古總匯 TodoList 燴頁面模組 #2",
+                            link: "javascript:;",
+                        },
+                        {
+                            type: "總匯拼盤",
+                            title: "復古總匯 TodoList 燴頁面模組 #3",
+                            link: "javascript:;",
+                        },
+                        {
+                            type: "精選甜點",
+                            title: "靜態渲染 VuePress 漸層飲",
+                            link: "javascript:;",
+                        },
+                        {
+                            type: "精選甜點",
+                            title: "風情萬種 Nuxt.js 千層糕",
+                            link: "javascript:;",
+                        },
+                        { type: "主廚的話", title: "餐後心得與其他資訊", link: "javascript:;" },
+                    ],
                 },
-            })
+                computed: {
+                    currentMenu() {
+                        return this.menu[this.index];
+                    },
+                    menuLength() {
+                        return this.menu.length;
+                    },
+                },
+                methods: {
+                    changeIndex(num) {
+                        this.index = (this.index + num + this.menuLength) % this.menuLength;
+                    },
+                },
+            });
         </script>
     </body>
 </html>
