@@ -1,8 +1,7 @@
 <template>
     <div id="app">
         <h1>Todo List</h1>
-        <input type="text" v-model="newTodo" placeholder="Add a new todo" />
-        <button v-on:click="addTodo">Add</button>
+        <TodoHeader />
         <ul>
             <li v-for="(todo, index) in todos" v-bind:class="{ done: todo.done }">
                 <span>{{ todo.text }}</span>
@@ -14,9 +13,10 @@
 </template>
 
 <script>
+import TodoHeader from "./components/TodoHeader.vue"
 export default {
     name: "App",
-    components: {},
+    components: { TodoHeader },
     data() {
         return {
             newTodo: "",
@@ -24,15 +24,6 @@ export default {
         }
     },
     methods: {
-        addTodo: function () {
-            if (this.newTodo.trim() !== "") {
-                this.todos.push({
-                    text: this.newTodo,
-                    done: false,
-                })
-                this.newTodo = ""
-            }
-        },
         removeTodo: function (index) {
             this.todos.splice(index, 1)
         },
