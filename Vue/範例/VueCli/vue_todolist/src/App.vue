@@ -1,37 +1,36 @@
 <template>
     <div id="app">
         <h1>Todo List</h1>
-        <TodoHeader />
-        <ul>
-            <li v-for="(todo, index) in todos" v-bind:class="{ done: todo.done }">
-                <span>{{ todo.text }}</span>
-                <button v-on:click="removeTodo(index)">X</button>
-                <button v-on:click="toggleDone(index)">{{ todo.done ? "Undone" : "Done" }}</button>
-            </li>
-        </ul>
+        <TodoHeader @addTodo="addTodo" />
+        <TodoList />
     </div>
 </template>
 
 <script>
-import TodoHeader from "./components/TodoHeader.vue"
+import TodoHeader from "./components/TodoHeader";
+import TodoList from "./components/TodoList";
+
 export default {
     name: "App",
-    components: { TodoHeader },
+    components: { TodoHeader, TodoList },
     data() {
         return {
             newTodo: "",
             todos: [],
-        }
+        };
     },
     methods: {
+        addTodo(todo) {
+            this.todos.unshift(todo);
+        },
         removeTodo: function (index) {
-            this.todos.splice(index, 1)
+            this.todos.splice(index, 1);
         },
         toggleDone: function (index) {
-            this.todos[index].done = !this.todos[index].done
+            this.todos[index].done = !this.todos[index].done;
         },
     },
-}
+};
 </script>
 
 <style scoped>
