@@ -2,8 +2,8 @@
     <!-- list-item开始 -->
     <li>
         <label>
-            <input type="checkbox" />
-            <span>xxxx</span>
+            <input type="checkbox" :checked="todo.done" />
+            <span>{{ todo.name }}</span>
         </label>
         <button class="btn btn-danger" style="display: none">删除</button>
     </li>
@@ -12,6 +12,7 @@
 <script>
 export default {
     name: "TodoItem",
+    props: ["todo"],
 };
 </script>
 <style scoped>

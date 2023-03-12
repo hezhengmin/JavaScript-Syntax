@@ -2,7 +2,7 @@
     <div>
         <!-- list开始 -->
         <ul class="todo-main">
-            <TodoItem />
+            <TodoItem v-for="item in todoList" :key="item.id" :todo="item" />
         </ul>
         <!-- list结束 -->
     </div>
@@ -13,6 +13,15 @@ import TodoItem from "./TodoItem";
 export default {
     name: "TodoList",
     components: { TodoItem },
+    data() {
+        return {
+            todoList: [
+                { id: "001", name: "吃飯", done: true },
+                { id: "002", name: "玩遊戲", done: false },
+                { id: "003", name: "睡覺", done: true },
+            ],
+        };
+    },
 };
 </script>
 <style scoped>
