@@ -5,7 +5,7 @@
                 <div class="todo-wrap">
                     <TodoHeader :addTodo="addTodo" />
                     <TodoList :todos="todoList" :checkTodo="checkTodo" :deleteTodo="deleteTodo" />
-                    <TodoFooter />
+                    <TodoFooter :todos="todoList" />
                 </div>
             </div>
         </div>
