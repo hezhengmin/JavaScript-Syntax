@@ -3,7 +3,7 @@
         <div class="root">
             <div class="todo-container">
                 <div class="todo-wrap">
-                    <TodoHeader />
+                    <TodoHeader :addTodo="addTodo" />
                     <TodoList :todos="todoList" />
                     <TodoFooter />
                 </div>
@@ -29,7 +29,11 @@ export default {
             ],
         };
     },
-    methods: {},
+    methods: {
+        addTodo(obj) {
+            this.todoList.unshift(obj);
+        },
+    },
 };
 </script>
 

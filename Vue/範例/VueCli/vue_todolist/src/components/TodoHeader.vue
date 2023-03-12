@@ -11,6 +11,7 @@ import { nanoid } from "nanoid";
 
 export default {
     name: "TodoHeader",
+    props: ["addTodo"],
     data() {
         return { title: "" };
     },
@@ -22,6 +23,9 @@ export default {
                 done: false,
             };
             console.log(todoObj);
+
+            //props 可以傳方法回去
+            this.addTodo(todoObj);
             this.title = "";
         },
     },
