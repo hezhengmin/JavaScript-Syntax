@@ -2,7 +2,9 @@
     <!-- list-item开始 -->
     <li>
         <label>
-            <input type="checkbox" :checked="item.done" />
+            <input type="checkbox" :checked="item.done" @change="checkTodo(item.id)" />
+            <!-- vue 不建議修改props ，不宜使用v-model="item.done -->
+            <!-- <input type="checkbox" v-model="item.done" /> -->
             <span>{{ item.name }}</span>
         </label>
         <button class="btn btn-danger" style="display: none">删除</button>
@@ -12,7 +14,7 @@
 <script>
 export default {
     name: "TodoItem",
-    props: ["item"],
+    props: ["item", "checkTodo"],
 };
 </script>
 <style scoped>
