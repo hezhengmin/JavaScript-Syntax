@@ -4,7 +4,7 @@
             <div class="todo-container">
                 <div class="todo-wrap">
                     <TodoHeader :addTodo="addTodo" />
-                    <TodoList :todos="todoList" :checkTodo="checkTodo" />
+                    <TodoList :todos="todoList" :checkTodo="checkTodo" :deleteTodo="deleteTodo" />
                     <TodoFooter />
                 </div>
             </div>
@@ -38,6 +38,10 @@ export default {
             this.todoList.forEach((todo) => {
                 if (todo.id === id) todo.done = !todo.done;
             });
+        },
+        deleteTodo(id) {
+            //filter過濾元素產生新的
+            this.todoList = this.todoList.filter((todo) => todo.id !== id);
         },
     },
 };

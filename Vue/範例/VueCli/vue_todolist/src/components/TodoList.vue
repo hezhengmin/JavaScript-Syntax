@@ -2,7 +2,12 @@
     <div>
         <!-- list开始 -->
         <ul class="todo-main">
-            <TodoItem v-for="todo in todos" :key="todo.id" :item="todo" :checkTodo="checkTodo" />
+            <TodoItem
+                v-for="todo in todos"
+                :key="todo.id"
+                :item="todo"
+                :checkTodo="checkTodo"
+                :deleteTodo="deleteTodo" />
         </ul>
         <!-- list结束 -->
     </div>
@@ -12,7 +17,7 @@ import TodoItem from "./TodoItem";
 
 export default {
     name: "TodoList",
-    props: ["todos", "checkTodo"],
+    props: ["todos", "checkTodo", "deleteTodo"],
     components: { TodoItem },
     data() {
         return {};
