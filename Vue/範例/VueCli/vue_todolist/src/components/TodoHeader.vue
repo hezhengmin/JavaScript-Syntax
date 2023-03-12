@@ -1,17 +1,30 @@
 <template lang="">
     <!-- header开始 -->
     <div class="todo-header">
-        <input type="text" placeholder="请输入你的任务名称，按回车键确认" />
+        <input type="text" placeholder="请输入你的任务名称，按回车键确认" v-model="title" @keyup.enter="add" />
     </div>
     <!-- header结束 -->
 </template>
 <script>
+//類似uuid
+import { nanoid } from "nanoid";
+
 export default {
     name: "TodoHeader",
     data() {
-        return {};
+        return { title: "" };
     },
-    methods: {},
+    methods: {
+        add(e) {
+            let todoObj = {
+                id: nanoid(),
+                name: this.title,
+                done: false,
+            };
+            console.log(todoObj);
+            this.title = "";
+        },
+    },
 };
 </script>
 <style scoped>

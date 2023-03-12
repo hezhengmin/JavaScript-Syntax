@@ -4,7 +4,7 @@
             <div class="todo-container">
                 <div class="todo-wrap">
                     <TodoHeader />
-                    <TodoList />
+                    <TodoList :todos="todoList" />
                     <TodoFooter />
                 </div>
             </div>
@@ -21,7 +21,13 @@ export default {
     name: "App",
     components: { TodoHeader, TodoList, TodoFooter },
     data() {
-        return {};
+        return {
+            todoList: [
+                { id: "001", name: "吃飯", done: true },
+                { id: "002", name: "玩遊戲", done: false },
+                { id: "003", name: "睡覺", done: true },
+            ],
+        };
     },
     methods: {},
 };
