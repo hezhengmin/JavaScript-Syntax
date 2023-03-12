@@ -1,17 +1,34 @@
 <template lang="">
     <div>
-        <ul>
-            <li v-for="(todo, index) in todos" v-bind:class="{ done: todo.done }">
-                <span>{{ todo.text }}</span>
-                <button v-on:click="removeTodo(index)">X</button>
-                <button v-on:click="toggleDone(index)">{{ todo.done ? "Undone" : "Done" }}</button>
-            </li>
+        <!-- list开始 -->
+        <ul class="todo-main">
+            <TodoItem />
         </ul>
+        <!-- list结束 -->
     </div>
 </template>
 <script>
+import TodoItem from "./TodoItem";
+
 export default {
     name: "TodoList",
+    components: { TodoItem },
 };
 </script>
-<style lang=""></style>
+<style scoped>
+/*list样式 */
+.todo-main {
+    margin-left: 0px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    padding: 0px;
+}
+.todo-empty {
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    padding-left: 5px;
+    margin-top: 10px;
+}
+</style>

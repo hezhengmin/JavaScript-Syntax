@@ -1,33 +1,32 @@
 <template lang="">
-    <div>
-        <input type="text" v-model="newTodo" placeholder="Add a new todo" />
-        <button @click="addTodo">Add</button>
+    <!-- header开始 -->
+    <div class="todo-header">
+        <input type="text" placeholder="请输入你的任务名称，按回车键确认" />
     </div>
+    <!-- header结束 -->
 </template>
 <script>
 export default {
     name: "TodoHeader",
     data() {
-        return {
-            newTodo: "",
-        };
+        return {};
     },
-    methods: {
-        addTodo() {
-            if (this.newTodo.trim() !== "") {
-                let obj = {
-                    text: this.newTodo,
-                    done: false,
-                };
-                this.$emit("addTodo", obj);
-                this.newTodo = "";
-
-                /*this.$emit('eventName', eventData)。
-                eventName是自定义事件的名称，可以是任何字符串。
-                eventData是传递给父组件的数据，可以是任何JavaScript值。 */
-            }
-        },
-    },
+    methods: {},
 };
 </script>
-<style lang=""></style>
+<style scoped>
+/* header */
+.todo-header input {
+    width: 560px;
+    height: 28px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 4px 7px;
+}
+.todo-header input:focus {
+    outline: none;
+    border-color: rgba(82, 168, 236, 0.8);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+</style>
