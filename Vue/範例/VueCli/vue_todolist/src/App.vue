@@ -5,7 +5,10 @@
                 <div class="todo-wrap">
                     <TodoHeader :addTodo="addTodo" />
                     <TodoList :todos="todoList" :checkTodo="checkTodo" :deleteTodo="deleteTodo" />
-                    <TodoFooter :todos="todoList" />
+                    <TodoFooter
+                        :todos="todoList"
+                        :checkedAllTodo="checkedAllTodo"
+                        :deleteCheckedTodo="deleteCheckedTodo" />
                 </div>
             </div>
         </div>
@@ -42,6 +45,16 @@ export default {
         deleteTodo(id) {
             //filter過濾元素產生新的
             this.todoList = this.todoList.filter((todo) => todo.id !== id);
+        },
+        //全勾或全不勾
+        checkedAllTodo(checked) {
+            this.todoList.forEach((todo) => {
+                todo.done = checked;
+            });
+        },
+        //刪除已完成勾選的項目
+        deleteCheckedTodo() {
+            this.todoList = this.todoList.filter((todo) => !todo.done);
         },
     },
 };

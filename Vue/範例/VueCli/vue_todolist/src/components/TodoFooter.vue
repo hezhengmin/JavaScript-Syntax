@@ -2,21 +2,24 @@
     <!-- footer开始 -->
     <div class="todo-footer">
         <label>
-            <input type="checkbox" />
+            <input type="checkbox" v-model="todosChecked" />
         </label>
         <span>
             <span>已完成{{ totalDone }}</span>
-            / 全部{{ todos.length }}
+            / 全部{{ todosLength }}
         </span>
-        <button class="btn btn-danger">清除已完成的任务</button>
+        <button class="btn btn-danger" @click="clearAll">清除已完成的任务</button>
     </div>
     <!-- footer结束 -->
 </template>
 <script>
 export default {
     name: "TodoFooter",
-    props: ["todos"],
+    props: ["todos", "checkedAllTodo", "deleteCheckedTodo"],
     computed: {
+        todosLength() {
+            return this.todos.length;
+        },
         totalDone() {
             /*
             reduce 統計過濾條件的總共數值, pre 看最後面設定多少數值 0
@@ -28,6 +31,20 @@ export default {
             */
 
             return this.todos.reduce((pre, current) => pre + (current.done ? 1 : 0), 0);
+        },
+        //全部勾選checkbox或取消全部的checkbox
+        todosChecked: {
+            get() {
+                return this.totalDone === this.todosLength && this.totalDone > 0;
+            },
+            set(value) {
+                this.checkedAllTodo(value);
+            },
+        },
+    },
+    methods: {
+        clearAll() {
+            this.deleteCheckedTodo();
         },
     },
 };
