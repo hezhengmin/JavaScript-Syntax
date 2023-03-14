@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=s, initial-scale=1.0">
+    <title>localStorage</title>
+</head>
+<body>
+    <h2>localStorage</h2>
+    <button onclick="saveData()">寫入</button>
+    <button onclick="readData()">讀取</button>
+    <button onclick="deleteOneData()">刪除一個</button>
+    <button onclick="deleteAllData()">清空</button>
+
+    <script>
+        /* 
+        1.瀏覽器關閉後，重開資料還存在
+        2.能儲存5MB的資料
+        */
+        function saveData(){
+            let obj = {name:"小名",age:18}
+            localStorage.setItem("number",123);
+            localStorage.setItem("object",JSON.stringify(obj));
+            localStorage.setItem("string","hello");
+        }
+        function readData(){
+            console.log(`number = ${localStorage.getItem("number")}`);
+            let obj  = JSON.parse(localStorage.getItem("object"))
+            console.log(`obj = `,obj);
+            console.log(`string = ${localStorage.getItem("string")}`);
+            //localstorage 沒有設定，取得 null
+            console.log(`nothing = ${localStorage.getItem("nothing")}` );
+        }
+        function deleteOneData(){
+           localStorage.removeItem("number");
+        }
+        function deleteAllData(){
+            localStorage.clear();
+        }
+
+    </script>
+</body>
+</html>

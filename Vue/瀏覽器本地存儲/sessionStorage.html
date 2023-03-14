@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=s, initial-scale=1.0">
+    <title>sessionStorage</title>
+</head>
+<body>
+    <h2>sessionStorage</h2>
+    <button onclick="saveData()">寫入</button>
+    <button onclick="readData()">讀取</button>
+    <button onclick="deleteOneData()">刪除一個</button>
+    <button onclick="deleteAllData()">清空</button>
+
+    <script>
+        /*
+        1.瀏覽器關閉後，重開資料不在
+        2.能儲存5MB的資料
+        */
+        function saveData(){
+            let obj = {name:"小名",age:18}
+            sessionStorage.setItem("number",123);
+            sessionStorage.setItem("object",JSON.stringify(obj));
+            sessionStorage.setItem("string","hello");
+        }
+        function readData(){
+            console.log(`number = ${sessionStorage.getItem("number")}`);
+            let obj  = JSON.parse(sessionStorage.getItem("object"))
+            console.log(`obj = `,obj);
+            console.log(`string = ${sessionStorage.getItem("string")}`);
+            //sessionStorage 沒有設定，取得 null
+            console.log(`nothing = ${sessionStorage.getItem("nothing")}` );
+        }
+        function deleteOneData(){
+           sessionStorage.removeItem("number");
+        }
+        function deleteAllData(){
+            sessionStorage.clear();
+        }
+
+    </script>
+</body>
+</html>
