@@ -25,12 +25,18 @@ export default {
     components: { TodoHeader, TodoList, TodoFooter },
     data() {
         return {
-            todoList: [
-                { id: "001", name: "吃飯", done: true },
-                { id: "002", name: "玩遊戲", done: false },
-                { id: "003", name: "睡覺", done: true },
-            ],
+            //從localStorage取值，若沒有給空[]
+            todoList: JSON.parse(localStorage.getItem("todos")) || [],
         };
+    },
+    watch: {
+        //深度監聽
+        todoList: {
+            deep: true,
+            handler() {
+                localStorage.setItem("todos", JSON.stringify(this.todoList));
+            },
+        },
     },
     methods: {
         addTodo(obj) {
