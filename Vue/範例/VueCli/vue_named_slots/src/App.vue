@@ -15,6 +15,7 @@
         </MyCategory>
         <MyCategory title="電影">
             <video slot="center" controls src=""></video>
+            <!-- 兩種寫法 slot="footer"、v-slot:footer -->
             <template v-slot:footer>
                 <div class="footer">
                     <a href="https://hezhengmin.github.io/">經典</a>
