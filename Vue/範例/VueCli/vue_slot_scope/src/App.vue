@@ -27,6 +27,7 @@
             </template>
         </MyCategory>
 
+        <!-- 作用域插槽，數據在組件本身，games在MyCategory.vue組件中，但使用遍歷需要App.vue組件決定 -->
         <MyCategory title="遊戲">
             <template slot-scope="{ games }">
                 <h4 v-for="(item, index) in games" :key="index">
