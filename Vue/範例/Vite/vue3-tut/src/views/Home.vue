@@ -1,5 +1,6 @@
 <template lang="">
     <div>
+        <router-link :to="{ name: 'WatchAndWatchEffect' }">WatchAndWatchEffect</router-link>
         <router-view />
     </div>
 </template>
