@@ -20,11 +20,15 @@ const routes = [
                 name: "Computed",
                 component: () => import("../components/Computed.vue"),
             },
-
             {
                 path: "WatchAndWatchEffect",
                 name: "WatchAndWatchEffect",
                 component: () => import("../components/WatchAndWatchEffect.vue"),
+            },
+            {
+                path: "Parent",
+                name: "Parent",
+                component: () => import("../components/Parent.vue"),
             },
         ],
     },
