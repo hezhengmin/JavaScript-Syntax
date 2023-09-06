@@ -30,6 +30,11 @@ const routes = [
                 name: "Parent",
                 component: () => import("../components/Parent.vue"),
             },
+            {
+                path: "SlotTutorial",
+                name: "SlotTutorial",
+                component: () => import("../components/SlotTutorial.vue"),
+            },
         ],
     },
     { path: "/KeyPage", component: () => import("../views/KeyPage.vue") },

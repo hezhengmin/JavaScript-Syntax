@@ -2,6 +2,7 @@
     <div>
         <router-link :to="{ name: 'WatchAndWatchEffect' }">WatchAndWatchEffect</router-link>
         <router-link :to="{ name: 'Parent' }">Parent</router-link>
+        <router-link :to="{ name: 'SlotTutorial' }">SlotTutorial</router-link>
         <router-view />
     </div>
 </template>
