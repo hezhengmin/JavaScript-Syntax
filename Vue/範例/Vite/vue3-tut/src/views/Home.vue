@@ -1,8 +1,16 @@
 <template lang="">
     <div>
-        <router-link :to="{ name: 'WatchAndWatchEffect' }">WatchAndWatchEffect</router-link>
-        <router-link :to="{ name: 'Parent' }">Parent</router-link>
-        <router-link :to="{ name: 'SlotTutorial' }">SlotTutorial</router-link>
+        <ul>
+            <li>
+                <router-link :to="{ name: 'WatchAndWatchEffect' }">WatchAndWatchEffect</router-link>
+            </li>
+            <li>
+                <router-link :to="{ name: 'Parent' }">Parent</router-link>
+            </li>
+            <li>
+                <router-link :to="{ name: 'SlotTutorial' }">SlotTutorial</router-link>
+            </li>
+        </ul>
         <router-view />
     </div>
 </template>

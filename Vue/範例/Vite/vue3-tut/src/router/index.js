@@ -38,6 +38,7 @@ const routes = [
         ],
     },
     { path: "/KeyPage", component: () => import("../views/KeyPage.vue") },
+    { path: "/RefAndToRef", component: () => import("../views/RefAndToRef.vue") },
 ];
 
 // 3. 创建路由实例并传递 `routes` 配置
