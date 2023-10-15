@@ -39,6 +39,7 @@ const routes = [
     },
     { path: "/KeyPage", component: () => import("../views/KeyPage.vue") },
     { path: "/RefAndToRef", component: () => import("../views/RefAndToRef.vue") },
+    { path: "/ShallowRefAndShallowReactive", component: () => import("../views/ShallowRefAndShallowReactive.vue") },
 ];
 
 // 3. 创建路由实例并传递 `routes` 配置
