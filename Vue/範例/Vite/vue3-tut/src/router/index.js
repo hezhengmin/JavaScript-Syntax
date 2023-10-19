@@ -41,6 +41,7 @@ const routes = [
     { path: "/RefAndToRef", component: () => import("../views/RefAndToRef.vue") },
     { path: "/ShallowRefAndShallowReactive", component: () => import("../views/ShallowRefAndShallowReactive.vue") },
     { path: "/DefinePropsAndDefineEmits", component: () => import("../views/DefinePropsAndDefineEmits.vue") },
+    { path: "/ProvideAndInject", component: () => import("../views/ProvideAndInject.vue") },
 ];
 
 // 3. 创建路由实例并传递 `routes` 配置
