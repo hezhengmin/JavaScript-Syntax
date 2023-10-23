@@ -1,4 +1,7 @@
 <template lang="">
+    <el-row class="tac">
+        <el-col :span="24"></el-col>
+    </el-row>
     <div>
         <ul>
             <li>
@@ -17,5 +20,12 @@
 
 <script setup>
 import ComponentA from "../components/ComponentA.vue";
+import { Document, Menu as IconMenu, Location, Setting } from "@element-plus/icons-vue";
+const handleOpen = (key, keyPath) => {
+    console.log(key, keyPath);
+};
+const handleClose = (key, keyPath) => {
+    console.log(key, keyPath);
+};
 </script>
 <style lang=""></style>
