@@ -43,6 +43,7 @@ const routes = [
     { path: "/DefinePropsAndDefineEmits", component: () => import("../views/DefinePropsAndDefineEmits.vue") },
     { path: "/ProvideAndInject", component: () => import("../views/ProvideAndInject.vue") },
     { path: "/SuspensePage", component: () => import("../views/SuspensePage.vue") },
+    { path: "/ComputedPage", component: () => import("../views/ComputedPage.vue") },
 ];
 
 // 3. 创建路由实例并传递 `routes` 配置
