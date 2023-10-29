@@ -46,6 +46,7 @@ const routes = [
     { path: "/ComputedPage", component: () => import("../views/ComputedPage.vue") },
     { path: "/WatchPage", component: () => import("../views/WatchPage.vue") },
     { path: "/RefPage", component: () => import("../views/RefPage.vue") },
+    { path: "/TeleportPage", component: () => import("../views/TeleportPage.vue") },
 ];
 
 // 3. 创建路由实例并传递 `routes` 配置
