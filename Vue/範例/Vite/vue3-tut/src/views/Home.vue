@@ -15,12 +15,20 @@
             </li>
         </ul>
         <router-view />
+        counter:{{ counter }}
+        <button @click="increment()">counter++</button>
     </div>
 </template>
 
 <script setup>
 import ComponentA from "../components/ComponentA.vue";
 import { Document, Menu as IconMenu, Location, Setting } from "@element-plus/icons-vue";
+import { useCounterStore } from "../stores/counter";
+import { storeToRefs } from "pinia";
+
+const { counter } = storeToRefs(useCounterStore());
+const { increment } = useCounterStore();
+
 const handleOpen = (key, keyPath) => {
     console.log(key, keyPath);
 };
