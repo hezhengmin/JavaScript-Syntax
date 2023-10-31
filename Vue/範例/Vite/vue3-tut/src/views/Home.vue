@@ -17,6 +17,8 @@
         <router-view />
         counter:{{ counter }}
         <button @click="increment()">counter++</button>
+        <br />
+        <button @click="notify">Notify !</button>
     </div>
 </template>
 
@@ -25,6 +27,7 @@ import ComponentA from "../components/ComponentA.vue";
 import { Document, Menu as IconMenu, Location, Setting } from "@element-plus/icons-vue";
 import { useCounterStore } from "../stores/counter";
 import { storeToRefs } from "pinia";
+import { toast } from "vue3-toastify";
 
 const { counter } = storeToRefs(useCounterStore());
 const { increment } = useCounterStore();
@@ -34,6 +37,13 @@ const handleOpen = (key, keyPath) => {
 };
 const handleClose = (key, keyPath) => {
     console.log(key, keyPath);
+};
+
+const notify = () => {
+    toast("Wow so easy !", {
+        autoClose: 1000,
+        position: toast.POSITION.BOTTOM_RIGHT,
+    });
 };
 </script>
 <style lang=""></style>
