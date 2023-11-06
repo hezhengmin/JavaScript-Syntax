@@ -5,6 +5,12 @@
     <div>
         <ul>
             <li>
+                <router-link :to="{ name: 'tut-vmodel' }">tut-vmodel</router-link>
+            </li>
+            <li>
+                <router-link :to="{ name: 'Computed' }">Computed</router-link>
+            </li>
+            <li>
                 <router-link :to="{ name: 'WatchAndWatchEffect' }">WatchAndWatchEffect</router-link>
             </li>
             <li>
