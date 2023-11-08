@@ -5,6 +5,9 @@
     <div>
         <ul>
             <li>
+                <router-link :to="{ name: 'Home' }">Home</router-link>
+            </li>
+            <li>
                 <router-link :to="{ name: 'tut-vmodel' }">tut-vmodel</router-link>
             </li>
             <li>
@@ -19,12 +22,16 @@
             <li>
                 <router-link :to="{ name: 'SlotTutorial' }">SlotTutorial</router-link>
             </li>
+
+            <li>
+                <router-link :to="{ name: 'ChangePassword' }">ChangePassword</router-link>
+            </li>
         </ul>
         <router-view />
-        counter:{{ counter }}
+        <!-- counter:{{ counter }}
         <button @click="increment()">counter++</button>
         <br />
-        <button @click="notify">Notify !</button>
+        <button @click="notify">Notify !</button> -->
     </div>
 </template>
 

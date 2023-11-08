@@ -40,6 +40,12 @@ const routes = [
                 component: () => import("../components/SlotTutorial.vue"),
                 meta: { requiresAuth: true },
             },
+            {
+                path: "ChangePassword",
+                name: "ChangePassword",
+                component: () => import("../components/ChangePassword.vue"),
+                meta: { requiresAuth: true },
+            },
         ],
     },
     { path: "/KeyPage", component: () => import("../views/KeyPage.vue") },
@@ -79,8 +85,6 @@ const auth = {
 
 //TODO:路由判斷
 router.beforeEach((to, from) => {
-    console.log(to, from);
-
     if (to.meta.requiresAuth && !auth.isLoggedIn()) {
         // 此路由需要授权，请检查是否已登录
         // 如果没有，则重定向到登录页面
