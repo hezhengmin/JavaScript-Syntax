@@ -1,7 +1,4 @@
 <template lang="">
-    <el-row class="tac">
-        <el-col :span="24"></el-col>
-    </el-row>
     <div>
         <ul>
             <li>
@@ -58,5 +55,7 @@ const notify = () => {
         position: toast.POSITION.BOTTOM_RIGHT,
     });
 };
+
+
 </script>
 <style lang=""></style>
