@@ -52,6 +52,12 @@ const routes = [
                 component: () => import("../components/InjectPage.vue"),
                 meta: { requiresAuth: true },
             },
+            {
+                path: "ComposablesPage",
+                name: "ComposablesPage",
+                component: () => import("../components/ComposablesPage.vue"),
+                meta: { requiresAuth: true },
+            },
         ],
     },
     { path: "/KeyPage", component: () => import("../views/KeyPage.vue") },
