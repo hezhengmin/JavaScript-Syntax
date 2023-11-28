@@ -58,6 +58,12 @@ const routes = [
                 component: () => import("../components/ComposablesPage.vue"),
                 meta: { requiresAuth: true },
             },
+            {
+                path: "DirectivePage",
+                name: "DirectivePage",
+                component: () => import("../components/DirectivePage.vue"),
+                meta: { requiresAuth: true },
+            },
         ],
     },
     { path: "/KeyPage", component: () => import("../views/KeyPage.vue") },
