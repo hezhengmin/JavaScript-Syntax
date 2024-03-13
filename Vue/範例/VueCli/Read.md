@@ -1,14 +1,13 @@
 ## 建立腳手架
-`
-vue create todolist
-`
+
+`vue create todolist`
+
+## 選擇 Manually
+
 ## 切換目錄
-`
-cd vue_todolist
-`
+
+`cd vue_todolist`
+
 ## 開啟網站
-`
-npm run serve
-`
 
-
+`npm run serve`
