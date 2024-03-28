@@ -1,20 +1,17 @@
 <template>
     <div id="app">
+        父組件：
         <el-input-number
             v-model="parentSelectedValue"
             @change="handleChange"
             :min="1"
             :max="10"
             label="描述文字"></el-input-number>
-        選擇的數值：{{ selectedValue }}
-        <div>
-            標題：
-            <el-input style="width: 150px" v-model="title" placeholder=""></el-input>
-        </div>
         <custom-select
             :parentSelectedValue="parentSelectedValue"
             :title="title"
             @returnSelectedChange="getSelectedValue"></custom-select>
+        子組件，變更時選擇的數值：{{ selectedValue }}
     </div>
 </template>
 
